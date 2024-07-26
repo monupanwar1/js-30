@@ -1,92 +1,121 @@
-// task1 toogle image block to none;
+// //  task one promisses reject and resolve
 
-// const image =document.getElementById("image");
-// const button =document.getElementById("button");
-
-// button.addEventListener("click",function(){
-//  image.style.backgroundColor=image.style.backgroundColor==="white"? "blue":"white"; 
-//  image.style.display=image.style.display==="none"?"block":"none";
-
-// task2,3 add event to cahnges that changes its background color.
-
-
-// const box =document.getElementById("box");
-// box.addEventListener("mouseover",function(){
-//     this.style.backgroundColor="yellow";
-
+// const resolve =new Promise((resolve)=>{
+//   setTimeout(()=>{
+//     resolve("promise resolve")
+//   },2000)
 // })
-// box.addEventListener("mouseout",function(){
-//     this.style.backgroundColor="skyblue";
-
+// resolve.then((message)=>{
+//   console.log("resolve promise")
 // })
 
+// // task two promisses reject
 
-// task 4
-// const input =document.getElementById("input"); 
-// input.addEventListener("keydown" ,function(e){
-//     console.log("key pressed" ,e.key);
-
+// const reject= new Promise((_,reject)=>{
+//   setTimeout(()=>{
+//     reject("promise reject")
+//   },2000)
+// });
+// reject.catch((err)=>{
+//   console.log(err)
 // })
 
-// task5
-// const form =document.getElementById("form");
+// chaining promise
 
-// form.addEventListener("submit",function(e){
-//     e.preventDefault();
-//      console.log("Form data:", new FormData(this));
-//      console.log(e.target.value)
-   
+// const fetch =(data,delay)=>{
+//   return new Promise((resolve)=>{
+//     setTimeout(()=>{
+//       resolve(data);
+//     },delay)
+//   })
+// }
+// fetch("fetching from the server one",1000)
+// .then((Message)=>{
+//   console.log(Message);
+//   return fetch("fetching from the server two",2000)
+// })
+// .then((Message)=>{
+//   console.log(Message)
 // })
 
-// const dropDown =document.getElementById("dropdown")
-// const selectedValue =document.getElementById('selectedValue')
-// dropDown.addEventListener("change",function(){
-//     selectedValue.textContent=`selected value :${this.value}`
+// using the async await
+// const asyncResolve = async () => {
+//   const promise = new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve("Resolved value from async function");
+//     }, 2000);
+//   });
 
+//   const result = await promise;
+//   console.log(result); // Resolved value from async function
+// };
+
+// asyncResolve();
+
+
+// const asyncReject =async()=>{
+//   const promise =new Promise((_,reject)=>{
+//     setTimeout(()=>{
+//       reject("rejected async function")
+//     },2000)
+//   })
+//   try {
+//     const result =await promise;
+//     console.log(result);
+//   } catch(err){
+//     console.log(err)
+//   }
+// }
+// asyncReject()
+
+// Fetching Data from an API
+
+// fetch("https://jsonplaceholder.typicode.com/posts")
+// .then((res)=>res.json())
+// .then((data)=>{
+//   console.log(data)
 // })
-
-
-// const list =document.getElementById("list")
-// list.addEventListener("click",function(e){
-//     if(e.target.tagName==='LI'){
-//         console.log('clickd me',e.target.textcontent)
-//     }
+// .catch((err)=>{
+//   console.log(err)
 // })
+  // fetch data using the async await
+
+// const fetchdata =async()=>{
+//   try{
+//     const response =await fetch("https://jsonplaceholder.typicode.com/posts")
+//     const data =await response.json();
+//     console.log(data);
+//   }catch(err){
+//     console.log(err)
+//   }
+// }
+// fetchdata();
+
+// concurret promise ;
 
 
-const parentElement =document.getElementById("parentElement");
-const addElementBtn =document.getElementById("addElementBtn");
+const promise1 =new Promise((resolve)=>{
+  setTimeout(()=>{
+    resolve("promise resolve")
+  },2000)
+});
+const promise2 =new Promise((resolve)=>{
+  setTimeout(()=>{
+    resolve("promise resolve")
+  },2000)
+});
+const promise3 =new Promise((resolve)=>{
+  setTimeout(()=>{
+    resolve("promise resolve")
+  },2000)
+});
 
-parentElement.addEventListener("click",function(e){
-      if(e.target.classList.contains("childElement")){
-        console.log("clicked",event.target.textContent)
-      }
 
+Promise.all([promise1,promise2,promise3])
+.then((value)=>{
+  console.log("all promise resolve" ,value)
 })
-
-let count = 0;
-document
-  .getElementById("addElementBtn")
-  .addEventListener("click", function () {
-    const newElement = document.createElement("div");
-    newElement.className = "childElement";
-    newElement.textContent = `New Child Element ${count++}`;
-    document.getElementById("parentElement").appendChild(newElement);
-  })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Promise.race([promise1,promise2,promise3])  
+.then((value)=>{
+  console.log("first promise resolve" ,value)
+})

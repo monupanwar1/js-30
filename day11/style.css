@@ -10,23 +10,3 @@ html,body{
     overflow: hidden;
     padding: 10px;
 }
-#image{
-    display: block;
-    object-fit: cover;
-    object-position: center;
-    border: 1px solid red;
-}
-#box{
-    height: 100px;
-    width: 100px;
-    background-color: lightblue;
-    margin-top: 10px;
-    border-radius: 10px ;
-    align-items: center;
-    justify-content: center;
-
-}
-#box h1{
-    color: white;
-    font-size: 2xl;
-}
