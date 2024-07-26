@@ -6,20 +6,27 @@
 html,body{
     height: 100vh;
     width: 100%;
-    background-color: #dadadada;
+    background-color:#dadada;
+    overflow: hidden;
+    padding: 10px;
 }
-ul{
-    background-color: red;
-    gap: 100px ;
+#image{
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid red;
 }
+#box{
+    height: 100px;
+    width: 100px;
+    background-color: lightblue;
+    margin-top: 10px;
+    border-radius: 10px ;
+    align-items: center;
+    justify-content: center;
 
-
-#task5{
-    background-color: red;
-    display: flex;
-    flex-direction: column;
-}   
-#task5 p{
-    border: 1px solid black;
-   
+}
+#box h1{
+    color: white;
+    font-size: 2xl;
 }
